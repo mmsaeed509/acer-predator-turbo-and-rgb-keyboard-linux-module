@@ -1,0 +1,36 @@
+#
+# Maintainer: Mahmoud Mohamed (00xWolf) <mmsaeed509@gmail.com> , <https://github.com/mmsaeed509>
+#
+
+pkgname=Predator-Sense-GUI
+pkgver=0.4.6
+pkgrel=2
+pkgdesc="The GUI implementation of Predator Sense CLI app"
+arch=("any")
+depends=("python-wxpython")
+license=("MIT")
+groups=("exodia-predator-apps")
+
+prepare() {
+
+	cp -af ../src-code/. ${srcdir}
+
+}
+
+package() {
+
+  BIN_DIR=${pkgdir}/usr/bin
+  LIB_DIR=${pkgdir}/usr/lib
+  DESKTOP_DIR=${pkgdir}/usr/share/applications
+
+  mkdir -p ${BIN_DIR} ${LIB_DIR} ${DESKTOP_DIR}
+
+  cp ${srcdir}/rgb_config_acer_gkbbl_0 ${BIN_DIR}
+  cp ${srcdir}/Predator-Sense.desktop ${DESKTOP_DIR}
+  cp -rf ${srcdir}/lib/* ${LIB_DIR}
+  
+
+  
+  chmod +x "${pkgdir}/usr/bin/rgb_config_acer_gkbbl_0"
+
+}

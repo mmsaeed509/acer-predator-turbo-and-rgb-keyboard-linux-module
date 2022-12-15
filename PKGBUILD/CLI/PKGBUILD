@@ -1,0 +1,41 @@
+#
+# Maintainer: Mahmoud Mohamed (00xWolf) <mmsaeed509@gmail.com> , <https://github.com/mmsaeed509>
+#
+
+pkgname=Predator-Sense-CLI
+pkgver=1.0
+pkgrel=6
+pkgdesc="The CLI implementation of Predator Sense for Acer Predator Helios laptops to control CPU/GPU fans and keyboard RGB color in Linux"
+arch=('any')
+url="https://github.com/JafarAkhondali/acer-predator-turbo-and-rgb-keyboard-linux-module"
+license=('GPL3')
+depends=('linux-headers')
+makedepends=('gcc' 'make')
+groups=("exodia-predator-apps")
+install="${pkgname}.install"
+
+prepare() {
+
+	cp -af ../src-code/. ${srcdir}
+
+}
+
+package() {
+
+    cd ${pkgdir}
+
+	local SRC_CODE_DIR=${pkgdir}/opt/turbo-fan # Instalation folder (src code)#
+	local SERVICE_DIR=${pkgdir}/etc/systemd/system # Service setup folder (where all services are stored) #
+
+	mkdir -p ${SRC_CODE_DIR}
+	mkdir -p ${SERVICE_DIR}
+	
+	cp -af ${srcdir}/* ${SRC_CODE_DIR}
+
+	cp ${srcdir}/turbo-fan.service ${SERVICE_DIR}
+
+	rsync -av ./* ${SRC_CODE_DIR} --exclude=".git/*"
+	
+	chmod  +x ${SRC_CODE_DIR}/*.sh
+
+}

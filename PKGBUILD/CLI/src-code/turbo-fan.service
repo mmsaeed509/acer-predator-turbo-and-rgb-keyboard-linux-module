@@ -1,0 +1,16 @@
+[Unit]
+Description = Enables turbo button
+After=sysinit.target
+StartLimitIntervalSec=5
+
+[Service]
+Type=simple
+Restart=no
+RemainAfterExit=yes
+User=root
+WorkingDirectory=/opt/turbo-fan
+ExecStart=/bin/bash ./install.sh
+ExecStop=/bin/bash ./uninstall.sh
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Predator Sense
+Comment=Control CPU/GPU Fans And Keyboard RGB Color
+Exec=rgb_config_acer_gkbbl_0
+Icon=/usr/share/pixmaps/Predator.png
+Terminal=false
+Type=Application
+Categories=Settings;Utility;
+Keywords=RGB;Acer;Predator;
